@@ -646,33 +646,49 @@
           "label": "Name",
           "description": "The standardized name of the actor."
         },
-        "type": {
-          "label": "Type",
-          "description": "Indicates whether the actor is an individual (Person) or an institution, corporation, or family (Group)"
+        "dataset": {
+          "label": "Dataset",
+          "description": "The datasets in InTaVia projects"
         },
-        "birthDateTimespan": {
-          "label": "Birth / formation date",
-          "description": "The date when the actor was born or established."
+        "gender": {
+          "label": "Gender",
+          "description": "The gender of the actor"
         },
-        "deathDateTimespan": {
-          "label": "Death / dissolution date",
-          "description": "The date when the actor died or dissolved."
+        "country": {
+          "label": "Country",
+          "description": "The country of the actor"
+        },
+        "occupation": {
+          "label": "Occupation",
+          "description": "The occupation of the actor"
+        },
+        "link": {
+          "label": "Link",
+          "description": "Link"
+        },
+        "reference": {
+          "label": "Reference",
+          "description": "Reference"
+        },
+        "birth_date": {
+          "label": "Birth time",
+          "description": "The date when the actor was born."
+        },
+        "birth_place": {
+          "label": "Birth place",
+          "description": "The place where the actor was born."
+        },
+        "death_date": {
+          "label": "Death time",
+          "description": "The date when the actor died."
+        },
+        "death_place": {
+          "label": "Death place",
+          "description": "The place where the actor died."
         },
         "place": {
           "label": "Activity location",
           "description": "Place(s) of activity linked to this actor."
-        },
-        "work": {
-          "label": "Work",
-          "description": "Work(s) linked to the actor."
-        },
-        "manuscript": {
-          "label": "Manuscript",
-          "description": "Manuscript(s) linked to the actor."
-        },
-        "role": {
-          "label": "Role",
-          "description": "Role(s)"
         },
         "source": {
           "label": "Source",

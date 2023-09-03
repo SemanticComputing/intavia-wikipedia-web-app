@@ -6,8 +6,8 @@
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
     "sparqlQueriesFile": "SparqlQueriesActors.js",
-    "baseURI": "https://en.wikipedia.org",
-    "URITemplate": "<BASE_URI>/wiki/<LOCAL_ID>",
+    "baseURI": "http://www.wikidata.org",
+    "URITemplate": "<BASE_URI>/entity/<LOCAL_ID>",
     "facetClass": "wlink:Person",
     "frontPageImage": "main_page/works-452x262.jpg",
     "searchMode": "faceted-search",
@@ -71,6 +71,16 @@
             "onlyOnInstancePage": true
         },
         {
+            "id": "image",
+            "valueType": "image",
+            "previewImageHeight": 160,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "hideHeader": true
+        },
+        {
             "id": "prefLabel",
             "valueType": "object",
             "makeLink": true,
@@ -104,7 +114,8 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
-            "minWidth": 150},
+            "minWidth": 150
+        },
         {
             "id": "birth_date",
             "valueType": "string",
@@ -112,7 +123,16 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
-            "minWidth": 250
+            "minWidth": 80
+        },
+        {
+            "id": "birth_place",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 120
         },
         {
             "id": "death_date",
@@ -121,7 +141,16 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
-            "minWidth": 250
+            "minWidth": 80
+        },
+        {
+            "id": "death_place",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 120
         }
 
     ],
@@ -130,77 +159,95 @@
             "containerClass": "one",
             "facetType": "text",
             "filterType": "textFilter",
-            "sortByPredicate": "skos:prefLabel",
-            "textQueryProperty": "skos:prefLabel"
+            "sortByPredicate": "rdfs:label",
+            "textQueryProperty": "rdfs:label"
         },
         "dataset": {
             "containerClass": "four",
             "facetType": "list",
+            "facetLabelPredicate": "rdfs:label",
             "filterType": "uriFilter",
             "predicate": "wlink:dataset",
             "searchField": false,
             "sortButton": false,
+            "pieChartButton": true,
             "sortBy": "instanceCount",
             "sortDirection": "desc"
         },
-        "references": {
+        "gender": {
+            "containerClass": "four",
+            "facetType": "list",
+            "facetLabelPredicate": "rdfs:label",
+            "filterType": "uriFilter",
+            "predicate": "wlink:gender",
+            "searchField": false,
+            "sortButton": false,
+            "pieChartButton": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc"
+        },
+        "country": {
+            "containerClass": "four",
+            "facetType": "list",
+            "facetLabelPredicate": "rdfs:label",
+            "filterType": "uriFilter",
+            "predicate": "wlink:country",
+            "searchField": false,
+            "sortButton": false,
+            "pieChartButton": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc"
+        },
+        "occupation": {
+            "containerClass": "four",
+            "facetType": "list",
+            "facetLabelPredicate": "rdfs:label",
+            "filterType": "uriFilter",
+            "predicate": "wlink:occupation",
+            "searchField": false,
+            "sortButton": false,
+            "pieChartButton": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc"
+        },
+        "reference": {
             "containerClass": "six",
             "facetType": "list",
+            "facetLabelPredicate": "rdfs:label",
             "filterType": "uriFilter",
+            "searchField": true,
+            "sortButton": true,
             "pieChartButton": true,
             "predicate": "wlink:has_reference/wlink:references",
             "sortBy": "instanceCount",
             "sortByPredicate": "wlink:has_reference/wlink:references/rdfs:label",
             "sortDirection": "desc"
         },
-        "language": {
-            "barChartButton": true,
-            "containerClass": "ten",
-            "facetType": "list",
-            "filterType": "uriFilter",
-            "pieChartButton": true,
-            "predicate": "^frbroo:R19_created_a_realisation_of/frbroo:R17_created/crm:P72_has_language",
-            "searchField": true,
-            "sortButton": true,
-            "sortBy": "instanceCount",
-            "sortByPredicate": "^frbroo:R19_created_a_realisation_of/frbroo:R17_created/crm:P72_has_language/skos:prefLabel",
-            "sortDirection": "desc"
-        },
-        "manuscript": {
-            "sortByPredicate": "^mmm-schema:manuscript_work/skos:prefLabel"
-        },
-        "productionTimespan": {
+        "birth_date": {
             "containerClass": "four",
+            "startProperty": "crm:P82a_begin_of_the_begin",
             "endProperty": "crm:P82b_end_of_the_end",
             "facetType": "timespan",
             "filterType": "timespanFilter",
+            "dataType": "xsd:date",
             "max": null,
             "min": null,
-            "predicate": "^mmm-schema:manuscript_work/^crm:P108_has_produced/crm:P4_has_time-span",
-            "sortByAscPredicate": "^mmm-schema:manuscript_work/^crm:P108_has_produced/crm:P4_has_time-span/crm:P82a_begin_of_the_begin",
-            "sortByDescPredicate": "^mmm-schema:manuscript_work/^crm:P108_has_produced/crm:P4_has_time-span/crm:P82b_end_of_the_end",
-            "startProperty": "crm:P82a_begin_of_the_begin"
+            "predicate": "wlink:birth_date",
+            "sortByAscPredicate": "wlink:birth_date/crm:P82a_begin_of_the_begin",
+            "sortByDescPredicate": "wlink:birth_date/crm:P82b_end_of_the_end"
         },
-        "collection": {
-            "containerClass": "ten",
-            "facetType": "list",
-            "filterType": "uriFilter",
-            "predicate": "^mmm-schema:manuscript_work/crm:P46i_forms_part_of",
-            "searchField": true,
-            "sortButton": true,
-            "sortBy": "instanceCount",
-            "sortByPredicate": "^mmm-schema:manuscript_work/crm:P46i_forms_part_of/skos:prefLabel",
-            "sortDirection": "desc"
-        },
-        "source": {
-            "containerClass": "three",
-            "facetType": "list",
-            "filterType": "uriFilter",
-            "pieChartButton": true,
-            "predicate": "dct:source",
-            "sortBy": "instanceCount",
-            "sortByPredicate": "dct:source/skos:prefLabel",
-            "sortDirection": "desc"
+        "death_date": {
+            "containerClass": "four",
+            "startProperty": "crm:P82a_begin_of_the_begin",
+            "endProperty": "crm:P82b_end_of_the_end",
+            "facetType": "timespan",
+            "filterType": "timespanFilter",
+            "dataType": "xsd:date",
+            "max": null,
+            "min": null,
+            "predicate": "wlink:death_date",
+            "sortByAscPredicate": "wlink:death_date/crm:P82a_begin_of_the_begin",
+            "sortByDescPredicate": "wlink:death_date/crm:P82b_end_of_the_end"
         }
     }
 }
