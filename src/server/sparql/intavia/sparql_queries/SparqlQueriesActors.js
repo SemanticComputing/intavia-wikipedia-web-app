@@ -15,7 +15,7 @@ UNION
 {
   ?id wlink:has_reference ?link__id .
   ?link__id rdfs:label ?link__prefLabel ; wlink:references ?reference__id .
-  BIND(CONCAT("/links/page/", REPLACE(STR(?link__id), "^.*\\\\/(.+)", "$1")) AS ?link__dataProviderUrl)
+  BIND(CONCAT("/sentences/page/", REPLACE(STR(?link__id), "^.*\\\\/(.+)", "$1")) AS ?link__dataProviderUrl)
 
   ?reference__id rdfs:label ?reference__prefLabel .
   BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)

@@ -1,0 +1,126 @@
+{
+    "id": "sentences",
+    "endpoint": {
+      "url": "http://localhost:3030/intavia/query",
+      "useAuth": false,
+      "prefixesFile": "SparqlQueriesPrefixes.js"
+    },
+    "sparqlQueriesFile": "SparqlQueriesSentences.js",
+    "baseURI": "http://www.intavia.eu/wikipedia",
+    "URITemplate": "<BASE_URI>/sentences/<LOCAL_ID>",
+    "resultClasses": {
+      "sentences": {
+        "instanceConfig": {
+          "propertiesQueryBlock": "referenceProperties",
+          "instancePageResultClasses": {
+            "instancePageTable": {
+              "tabID": 0,
+              "component": "InstancePageTable",
+              "tabPath": "table",
+              "tabIcon": "CalendarViewDay"
+            },
+            "instancePageExport": {
+              "tabID": 1,
+              "component": "Export",
+              "tabPath": "export",
+              "tabIcon": "CloudDownload",
+              "pageType": "instancePage"
+            }
+          }
+        }
+      }
+    },
+    "properties": [
+        {
+            "id": "uri",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true
+        },
+        {
+            "id": "image",
+            "valueType": "image",
+            "previewImageHeight": 160,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "hideHeader": true
+        },
+        {
+            "id": "prefLabel",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 250
+        },
+        {
+            "id": "dataset",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 60
+        },
+        {
+            "id": "link",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 300
+        },
+        {
+            "id": "referencer",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 150
+        },
+        {
+            "id": "birth_date",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 80
+        },
+        {
+            "id": "birth_place",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 120
+        },
+        {
+            "id": "death_date",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 80
+        },
+        {
+            "id": "death_place",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 120
+        }
+    ]
+  }
