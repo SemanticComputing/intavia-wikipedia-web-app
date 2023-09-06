@@ -128,3 +128,33 @@ export const referenceProperties = `
       BIND (URI(?external__id) AS ?external__dataProviderUrl)
     }
 `
+
+export const referencePlacesQuery = `
+SELECT DISTINCT ?id ?lat ?long 
+  (COUNT(DISTINCT ?person) AS ?instanceCount)
+  WHERE {
+    
+    <FILTER>
+    
+    ?person wlink:has_reference/wlink:references ?id .
+    
+    ?id wlink:lat ?lat ;
+      wlink:long ?long .
+  } GROUP BY ?id ?lat ?long
+`
+
+//  map popup
+export const placePropertiesInfoWindow = `
+  OPTIONAL { ?id rdfs:label ?_label }
+  BIND(COALESCE(?_label, "<place>") AS ?prefLabel__id)
+  BIND(?prefLabel__id AS ?prefLabel__prefLabel)
+  BIND(CONCAT("/references/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+`
+
+//  references shown in map popup
+export const actorsRelatedTo = `
+  
+    ?related__id wlink:has_reference/wlink:references ?id ; rdfs:label ?related__prefLabel .
+    BIND(CONCAT("/actors/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
+  
+`

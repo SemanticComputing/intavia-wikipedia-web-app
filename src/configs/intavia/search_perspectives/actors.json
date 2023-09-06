@@ -61,7 +61,7 @@
             "component": "LeafletMap",
             "tabPath": "map",
             "tabIcon": "AddLocation",
-            "sparqlQuery": "peopleEventPlacesQuery",
+            "sparqlQuery": "peoplePlacesQuery",
             "facetClass": "actors",
             "filterTarget": "person",
             "resultMapper": "mapPlaces",

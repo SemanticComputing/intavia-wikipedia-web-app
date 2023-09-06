@@ -132,12 +132,12 @@ export const actorPlacesQuery = `
   GROUP BY ?id ?lat ?long
 `
 
-export const peopleEventPlacesQuery = `
+export const peoplePlacesQuery = `
 SELECT DISTINCT ?id ?lat ?long 
   (COUNT(DISTINCT ?person) AS ?instanceCount)
   WHERE {
     
-    # <FILTER>
+    <FILTER>
     
     ?person wlink:has_reference/wlink:references ?id .
       
@@ -151,7 +151,7 @@ export const placePropertiesInfoWindow = `
   OPTIONAL { ?id rdfs:label ?_label }
   BIND(COALESCE(?_label, "<place>") AS ?prefLabel__id)
   BIND(?prefLabel__id AS ?prefLabel__prefLabel)
-  BIND(CONCAT("/places/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+  BIND(CONCAT("/references/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
 `
 
 //  references shown in map popup
