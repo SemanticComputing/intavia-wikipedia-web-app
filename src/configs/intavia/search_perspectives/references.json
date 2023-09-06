@@ -1,0 +1,240 @@
+{
+    "id": "references",
+    "endpoint": {
+      "url": "http://localhost:3030/intavia/query",
+      "useAuth": false,
+      "prefixesFile": "SparqlQueriesPrefixes.js"
+    },
+    "sparqlQueriesFile": "SparqlQueriesReferences.js",
+    "baseURI": "http://www.wikidata.org",
+    "URITemplate": "<BASE_URI>/entity/<LOCAL_ID>",
+    "facetClass": "wlink:Page",
+    "frontPageImage": "main_page/works-452x262.jpg",
+    "searchMode": "faceted-search",
+    "defaultActiveFacets": [],
+    "defaultTab": "table",
+    "defaultInstancePageTab": "table",
+    "includeInSitemap": true,
+    "maps": {
+        "placesReferences": {
+            "center": [
+                22.43,
+                10.37
+            ],
+            "zoom": 2
+        }
+    },
+    "resultClasses": {
+      "references": {
+        "paginatedResultsConfig": {
+          "tabID": 0,
+          "component": "ResultTable",
+          "tabPath": "table",
+          "tabIcon": "CalendarViewDay",
+          "propertiesQueryBlock": "referencePropertiesFacetResults",
+          "paginatedResultsAlwaysExpandRows": false,
+          "paginatedResultsRowContentMaxHeight": 190,
+          "pagesize": 10,
+          "sortBy": null,
+          "sortDirection": null
+        },
+        "instanceConfig": {
+          "propertiesQueryBlock": "referenceProperties",
+          "instancePageResultClasses": {
+            "instancePageTable": {
+              "tabID": 0,
+              "component": "InstancePageTable",
+              "tabPath": "table",
+              "tabIcon": "CalendarViewDay"
+            },
+            "instancePageExport": {
+              "tabID": 1,
+              "component": "Export",
+              "tabPath": "export",
+              "tabIcon": "CloudDownload",
+              "pageType": "instancePage"
+            }
+          }
+        }
+      }
+    },
+    "properties": [
+        {
+            "id": "uri",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true
+        },
+        {
+            "id": "image",
+            "valueType": "image",
+            "previewImageHeight": 160,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "hideHeader": true
+        },
+        {
+            "id": "prefLabel",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 250
+        },
+        {
+            "id": "type",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 120
+        },
+        {
+            "id": "referencer",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 150
+        },
+        {
+            "id": "country",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 150
+        },
+        {
+            "id": "coordinate",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 120
+        },
+        {
+            "id": "birth_date",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 80
+        },
+        {
+            "id": "birth_place",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 120
+        },
+        {
+            "id": "death_date",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 80
+        },
+        {
+            "id": "death_place",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 120
+        },
+        {
+            "id": "occupation",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 120
+        },
+        {
+            "id": "external",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false,
+            "minWidth": 150,
+            "onlyOnInstancePage": true
+        }
+    ],
+    "facets": {
+        "prefLabel": {
+            "containerClass": "two",
+            "facetType": "text",
+            "filterType": "textFilter",
+            "sortByPredicate": "rdfs:label",
+            "textQueryProperty": "rdfs:label"
+        },
+        "dataset": {
+            "containerClass": "four",
+            "facetType": "list",
+            "facetLabelPredicate": "rdfs:label",
+            "filterType": "uriFilter",
+            "predicate": "^(wlink:has_reference/wlink:references)/wlink:dataset",
+            "searchField": false,
+            "sortButton": false,
+            "pieChartButton": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc"
+        },
+        "type": {
+            "containerClass": "four",
+            "facetType": "list",
+            "facetLabelPredicate": "rdfs:label",
+            "filterType": "uriFilter",
+            "predicate": "wlink:type",
+            "searchField": true,
+            "sortButton": false,
+            "pieChartButton": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc"
+        },
+        "country": {
+            "containerClass": "four",
+            "facetType": "list",
+            "facetLabelPredicate": "rdfs:label",
+            "filterType": "uriFilter",
+            "predicate": "wlink:country",
+            "searchField": true,
+            "sortButton": false,
+            "pieChartButton": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc"
+        },
+        "referencer": {
+            "containerClass": "six",
+            "facetType": "list",
+            "facetLabelPredicate": "rdfs:label",
+            "filterType": "uriFilter",
+            "searchField": true,
+            "sortButton": true,
+            "pieChartButton": true,
+            "predicate": "^(wlink:has_reference/wlink:references)",
+            "sortBy": "instanceCount",
+            "sortByPredicate": "^(wlink:has_reference/wlink:references)/rdfs:label",
+            "sortDirection": "desc"
+        }
+  }
+}

@@ -430,6 +430,10 @@
           "label": "Label",
           "description": "A short label describing the manuscript."
         },
+        "dataset": {
+          "label": "Dataset",
+          "description": "The datasets in InTaVia projects"
+        },
         "type": {
           "label": "Type",
           "description": "Type of the entity"

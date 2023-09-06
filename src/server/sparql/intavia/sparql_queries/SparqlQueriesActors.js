@@ -77,8 +77,10 @@ export const actorProperties = `
     
       ?reference__id rdfs:label ?reference__prefLabel .
       BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
-    
-    }
+    }    
+    UNION
+    {
+      ?id wlink:has_reference/wlink:html ?link_html_UNUSED }
     UNION
     {
       ?id wlink:birth_date/rdfs:label ?birth_date

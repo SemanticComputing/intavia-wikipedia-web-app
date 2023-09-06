@@ -188,11 +188,25 @@
         {
             "id": "link",
             "valueType": "object",
+            "renderAsHTML": false,
             "makeLink": true,
-            "externalLink": true,
-            "sortValues": true,
+            "externalLink": false,
+            "sortValues": false,
             "numberedList": false,
-            "minWidth": 300
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "link_html",
+            "valueType": "string",
+            "renderAsHTML": true,
+            "HTMLParserTask": "createReactRouterLinks",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
         },
         {
             "id": "reference",
@@ -201,7 +215,8 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
-            "minWidth": 150
+            "minWidth": 150,
+            "expandedOnInstancePage": true
         },
         {
             "id": "birth_date",
@@ -288,7 +303,7 @@
             "facetLabelPredicate": "rdfs:label",
             "filterType": "uriFilter",
             "predicate": "wlink:country",
-            "searchField": false,
+            "searchField": true,
             "sortButton": false,
             "pieChartButton": true,
             "sortBy": "instanceCount",
@@ -300,7 +315,7 @@
             "facetLabelPredicate": "rdfs:label",
             "filterType": "uriFilter",
             "predicate": "wlink:occupation",
-            "searchField": false,
+            "searchField": true,
             "sortButton": false,
             "pieChartButton": true,
             "sortBy": "instanceCount",

@@ -4,13 +4,12 @@
     "perspectives": {
         "searchPerspectives": [
             "actors",
-            "perspective2",
+            "references",
             "fullTextSearch"
         ],
         "onlyInstancePages": [
             "manuscripts",
-            "sentences",
-            "references"
+            "sentences"
         ]
     },
     "localeConfig": {
