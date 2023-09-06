@@ -61,7 +61,14 @@ export const referenceProperties = `
     UNION
     {
       ?id wlink:country ?country__id .
+      FILTER (?country__id != ?id)
       ?country__id rdfs:label ?country__prefLabel .
       BIND(CONCAT("/references/page/", REPLACE(STR(?country__id), "^.*\\\\/(.+)", "$1")) AS ?country__dataProviderUrl) 
+    }
+    UNION
+    {
+      ?id owl:sameAs ?external__id .
+      BIND (STR(?external__id) AS ?external__prefLabel)
+      BIND (URI(?external__id) AS ?external__dataProviderUrl)
     }
 `

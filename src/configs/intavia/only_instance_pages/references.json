@@ -139,6 +139,16 @@
             "sortValues": true,
             "numberedList": true,
             "minWidth": 120
+        },
+        {
+            "id": "external",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false,
+            "minWidth": 150,
+            "onlyOnInstancePage": true
         }
     ]
   }
