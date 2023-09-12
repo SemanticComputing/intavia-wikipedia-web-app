@@ -1,13 +1,13 @@
 {
   "id": "places",
   "endpoint": {
-    "url": "http://ldf.fi/mmm/sparql",
+    "url": "http://localhost:3030/intavia/query",
     "useAuth": false,
     "prefixesFile": "SparqlQueriesPrefixes.js"
   },
   "sparqlQueriesFile": "SparqlQueriesPlaces.js",
-  "baseURI": "http://ldf.fi/mmm",
-  "URITemplate": "<BASE_URI>/place/<LOCAL_ID>",
+  "baseURI": "http://www.wikidata.org",
+  "URITemplate": "<BASE_URI>/entity/<LOCAL_ID>",
   "resultClasses": {
     "places": {
       "instanceConfig": {

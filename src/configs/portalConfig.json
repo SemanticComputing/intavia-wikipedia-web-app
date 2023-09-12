@@ -5,11 +5,11 @@
         "searchPerspectives": [
             "actors",
             "references",
-            "fullTextSearch",
-            "sentences"
+            "sentences",
+            "fullTextSearch"
         ],
         "onlyInstancePages": [
-            "manuscripts"
+            "places"
         ]
     },
     "localeConfig": {

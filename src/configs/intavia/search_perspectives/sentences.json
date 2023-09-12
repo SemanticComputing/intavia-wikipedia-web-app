@@ -68,7 +68,16 @@
             "externalLink": false,
             "sortValues": false,
             "numberedList": false,
-            "minWidth": 300
+            "minWidth": 450
+        },
+        {
+          "id": "section",
+          "valueType": "string",
+          "makeLink": false,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": true,
+          "minWidth": 60
         },
         {
             "id": "person",
@@ -83,7 +92,7 @@
             "id": "reference",
             "valueType": "object",
             "makeLink": true,
-            "externalLink": true,
+            "externalLink": false,
             "sortValues": true,
             "numberedList": false,
             "minWidth": 300
@@ -96,6 +105,15 @@
             "sortValues": true,
             "numberedList": true,
             "minWidth": 60
+        },
+        {
+            "id": "source",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false,
+            "minWidth": 60
         }
     ],
     "facets": {
@@ -107,7 +125,7 @@
           "textQueryProperty": "rdfs:label"
       },
       "person": {
-          "containerClass": "six",
+          "containerClass": "ten",
           "facetType": "list",
           "facetLabelPredicate": "rdfs:label",
           "filterType": "uriFilter",
@@ -120,7 +138,7 @@
           "sortDirection": "desc"
       },
       "reference": {
-          "containerClass": "six",
+          "containerClass": "ten",
           "facetType": "list",
           "facetLabelPredicate": "rdfs:label",
           "filterType": "uriFilter",

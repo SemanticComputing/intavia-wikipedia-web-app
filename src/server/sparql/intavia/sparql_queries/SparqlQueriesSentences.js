@@ -11,7 +11,14 @@ export const sentencePropertiesFacetResults = `
   UNION
   {
     ?person__id wlink:has_reference ?id ; rdfs:label ?person__prefLabel .
-    BIND(CONCAT("/references/page/", REPLACE(STR(?person__id), "^.*\\\\/(.+)", "$1")) AS ?person__dataProviderUrl)
+    BIND(CONCAT("/actors/page/", REPLACE(STR(?person__id), "^.*\\\\/(.+)", "$1")) AS ?person__dataProviderUrl)
+    OPTIONAL { ?person__id wlink:dataset/rdfs:label ?dataset }
+  }
+  UNION 
+  {	
+    ?id dcterms:source ?source__id .
+    BIND(?source__id AS ?source__prefLabel) 
+    BIND(?source__id AS ?source__dataProviderUrl) 
   }
 `
 
@@ -25,34 +32,26 @@ export const sentenceProperties = `
       BIND(?id as ?uri__prefLabel)
     }
     UNION
-    {
-      ?id skos:altLabel ?altLabel .
+    { 
+      ?id wlink:references ?reference__id .
+      ?reference__id rdfs:label ?reference__prefLabel .
+      BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
     }
     UNION
     {
-      ?id a ?type__id .
-      ?type__id skos:prefLabel|rdfs:label ?type__prefLabel .
-      BIND(?id AS ?type__dataProviderUrl)
+      ?person__id wlink:has_reference ?id ; rdfs:label ?person__prefLabel .
+      BIND(CONCAT("/actors/page/", REPLACE(STR(?person__id), "^.*\\\\/(.+)", "$1")) AS ?person__dataProviderUrl)
+      OPTIONAL { ?person__id wlink:dataset/rdfs:label ?dataset }
     }
     UNION 
-    {			?referencer__id  wlink:has_reference/wlink:references ?id ;
-              rdfs:label ?referencer__prefLabel .
-          BIND(CONCAT("/actors/page/", REPLACE(STR(?referencer__prefLabel), "^.*\\\\/(.+)", "$1")) AS ?referencer__dataProviderUrl) 
+    {	
+      ?id dcterms:source ?source__id .
+      BIND(?source__id AS ?source__prefLabel) 
+      BIND(?source__id AS ?source__dataProviderUrl) 
     }
     UNION
     {
-      ?id wlink:birth_date/rdfs:label ?birth_date
+      ?id wlink:section ?section 
     }
-    UNION
-    {
-      ?id wlink:birth_place/rdfs:label ?birth_place
-    }
-    UNION
-    {
-      ?id wlink:death_date/rdfs:label ?death_date
-    }
-    UNION
-    {
-      ?id wlink:death_place/rdfs:label ?death_place
-    }
+
 `

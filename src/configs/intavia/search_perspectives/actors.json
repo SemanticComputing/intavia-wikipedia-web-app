@@ -47,7 +47,8 @@
                 "tabPath": "table",
                 "tabIcon": "CalendarViewDay",
                 "propertiesQueryBlock": "actorPropertiesFacetResults",
-                "pagesize": 10,
+                "paginatedResultsAlwaysExpandRows": true,
+                "pagesize": 20,
                 "sortBy": null,
                 "sortDirection": null
             },
