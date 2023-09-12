@@ -34,7 +34,7 @@
           "tabPath": "table",
           "tabIcon": "CalendarViewDay",
           "propertiesQueryBlock": "referencePropertiesFacetResults",
-          "paginatedResultsAlwaysExpandRows": false,
+          "paginatedResultsAlwaysExpandRows": true,
           "paginatedResultsRowContentMaxHeight": 190,
           "pagesize": 10,
           "sortBy": null,
@@ -222,6 +222,7 @@
             "containerClass": "two",
             "facetType": "text",
             "filterType": "textFilter",
+            "facetLabelPredicate": "rdfs:label",
             "sortByPredicate": "rdfs:label",
             "textQueryProperty": "rdfs:label"
         },
