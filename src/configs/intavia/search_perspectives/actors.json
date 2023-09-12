@@ -90,7 +90,7 @@
             "component": "Deck",
             "tabPath": "heatmap",
             "tabIcon": "LocationOn",
-            "sparqlQuery": "actorsHeatmapQuery",
+            "sparqlQuery": "peoplePlacesQuery",
             "facetClass": "actors",
             "filterTarget": "person",
             "resultMapper": "mapPlaces",

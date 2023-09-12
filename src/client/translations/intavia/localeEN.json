@@ -447,6 +447,10 @@
           "label": "Country",
           "description": "Country"
         },
+        "location": {
+          "label": "Location",
+          "description": "Location"
+        },
         "coordinate": {
           "label": "Coordinate",
           "description": "Coordinate"

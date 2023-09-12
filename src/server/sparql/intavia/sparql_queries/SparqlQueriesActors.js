@@ -69,15 +69,32 @@ export const actorProperties = `
     {
       ?id wlink:dataset/rdfs:label ?dataset 
     }
+    UNION  
+    {
+      { SELECT DISTINCT ?id ?link__id 
+        WHERE {
+            ?id wlink:has_reference ?link__id .
+            ?link__id wlink:order ?_sort_by .
+        } ORDER BY ?_sort_by 
+        }
+        ?link__id rdfs:label ?link__prefLabel .
+        BIND (CONCAT("/sentences/page/", REPLACE(STR(?link__id), "^.*\\\\/(.+)", "$1")) AS ?link__dataProviderUrl) 
+    }    
     UNION
     {
-      ?id wlink:has_reference ?link__id .
-      ?link__id rdfs:label ?link__prefLabel ; wlink:references ?reference__id .
-      BIND(CONCAT("/sentences/page/", REPLACE(STR(?link__id), "^.*\\\\/(.+)", "$1")) AS ?link__dataProviderUrl)
-    
-      ?reference__id rdfs:label ?reference__prefLabel .
-      BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
-    }    
+      ?id wlink:has_reference/wlink:references ?reference__id .
+      {
+        FILTER EXISTS { ?reference__id a wlink:Person }
+        ?reference__id rdfs:label ?reference__prefLabel .
+        BIND(CONCAT("/actors/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
+      }
+      UNION
+      {
+        FILTER NOT EXISTS { ?reference__id a wlink:Person }
+        ?reference__id rdfs:label ?reference__prefLabel .
+        BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
+      }
+    }  
     UNION
     {
       ?id wlink:has_reference/wlink:html ?link_html_UNUSED }
@@ -176,22 +193,8 @@ export const peopleMigrationsDialogQuery = `
   }
 `
 
+//  marker map and heatmap
 export const peoplePlacesQuery = `
-SELECT DISTINCT ?id ?lat ?long 
-  (COUNT(DISTINCT ?person) AS ?instanceCount)
-  WHERE {
-    
-    <FILTER>
-    
-    ?person wlink:has_reference/wlink:references ?id .
-      
-    ?id wlink:coordinate [ wlink:lat ?lat ;
-      wlink:long ?long ]
-  } GROUP BY ?id ?lat ?long
-`
-
-// heatmap
-export const actorsHeatmapQuery = `
 SELECT DISTINCT ?id ?lat ?long 
   (COUNT(DISTINCT ?person) AS ?instanceCount)
   WHERE {

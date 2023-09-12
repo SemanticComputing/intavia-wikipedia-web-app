@@ -122,6 +122,13 @@ export const referenceProperties = `
     }
     UNION
     {
+      ?id wlink:location ?location__id .
+      FILTER (?location__id != ?id)
+      ?location__id rdfs:label ?location__prefLabel .
+      BIND(CONCAT("/references/page/", REPLACE(STR(?location__id), "^.*\\\\/(.+)", "$1")) AS ?location__dataProviderUrl) 
+    }
+    UNION
+    {
       ?id owl:sameAs ?external__id .
       BIND (STR(?external__id) AS ?external__prefLabel)
       BIND (URI(?external__id) AS ?external__dataProviderUrl)
