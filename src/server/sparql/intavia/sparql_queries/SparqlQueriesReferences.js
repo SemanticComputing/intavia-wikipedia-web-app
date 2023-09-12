@@ -111,8 +111,7 @@ export const referenceProperties = `
     }
     UNION
     { 
-      ?id wlink:lat ?lat ; wlink:long ?long .
-        BIND (CONCAT('lat ', STR(xsd:decimal(?lat)), ', long ',STR(xsd:decimal(?long))) as ?coordinate)
+      ?id wlink:coordinate/rdfs:label ?coordinate 
     }
     UNION
     {
@@ -138,8 +137,8 @@ SELECT DISTINCT ?id ?lat ?long
     
     ?person wlink:has_reference/wlink:references ?id .
     
-    ?id wlink:lat ?lat ;
-      wlink:long ?long .
+    ?id wlink:coordinate [ wlink:lat ?lat ;
+      wlink:long ?long ] .
   } GROUP BY ?id ?lat ?long
 `
 

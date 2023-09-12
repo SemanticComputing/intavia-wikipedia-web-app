@@ -23,6 +23,13 @@
                 10.37
             ],
             "zoom": 2
+        },
+        "peopleMigrations": {
+            "center": [
+                22.43,
+                10.37
+            ],
+            "zoom": 2
         }
     },
     "resultClasses": {
@@ -71,8 +78,33 @@
                 "createPopUpContent": "createPopUpContentLetterSampo"
             }
         },
-        "actorNetwork": {
+        "peopleMigrations": {
             "tabID": 2,
+            "component": "Deck",
+            "tabPath": "migrations",
+            "tabIcon": "Redo",
+            "sparqlQuery": "peopleMigrationsQuery",
+            "facetClass": "actors",
+            "filterTarget": "person",
+            "layerType": "arcLayer",
+            "arcWidthVariable": "instanceCountScaled",
+            "instanceVariable": "person",
+            "showTooltips": true,
+            "postprocess": {
+                "func": "linearScale",
+                "config": {
+                    "variable": "instanceCount",
+                    "minAllowed": 3,
+                    "maxAllowed": 30
+                }
+            }
+        },
+        "peopleMigrationsDialog": {
+            "sparqlQuery": "peopleMigrationsDialogQuery",
+            "filterTarget": "id"
+        },
+        "actorNetwork": {
+            "tabID": 3,
             "component": "Network",
             "tabPath": "network",
             "tabIcon": "BubbleChart",
@@ -135,7 +167,7 @@
             }
         },
         "export": {
-            "tabID": 3,
+            "tabID": 4,
             "component": "Export",
             "tabPath": "export",
             "tabIcon": "CloudDownload",
@@ -183,7 +215,8 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
-            "minWidth": 60
+            "minWidth": 60,
+            "expandedOnInstancePage": true
         },
         {
             "id": "link",
@@ -262,16 +295,22 @@
             "sortValues": false,
             "numberedList": false,
             "minWidth": 150,
-            "onlyOnInstancePage": true
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
         }
     ],
     "facets": {
         "prefLabel": {
-            "containerClass": "one",
-            "facetType": "text",
-            "filterType": "textFilter",
-            "sortByPredicate": "rdfs:label",
-            "textQueryProperty": "rdfs:label"
+            "containerClass": "ten",
+            "facetType": "list",
+            "facetLabelPredicate": "rdfs:label",
+            "filterType": "uriFilter",
+            "predicate": "owl:sameAs/^owl:sameAs",
+            "searchField": true,
+            "sortButton": true,
+            "pieChartButton": false,
+            "sortBy": "prefLabel",
+            "sortDirection": "asc"
         },
         "dataset": {
             "containerClass": "four",

@@ -116,6 +116,7 @@ export const actorProperties = `
     }
 `
 
+// UNUSED!
 export const actorPlacesQuery = `
   SELECT ?id ?lat ?long
   (COUNT(DISTINCT ?actor) as ?instanceCount)
@@ -132,6 +133,49 @@ export const actorPlacesQuery = `
   GROUP BY ?id ?lat ?long
 `
 
+export const peopleMigrationsQuery = `
+SELECT DISTINCT ?id 
+  ?from__id ?from__prefLabel ?from__lat ?from__long ?from__dataProviderUrl
+  ?to__id ?to__prefLabel ?to__lat ?to__long ?to__dataProviderUrl
+  (COUNT(DISTINCT ?person) as ?instanceCount)
+
+WHERE {
+    
+    <FILTER>
+    
+    ?person a wlink:Person ;
+      wlink:birth_place ?from__id ;
+      wlink:death_place ?to__id .
+    
+  	FILTER(?from__id != ?to__id)
+  
+    ?from__id rdfs:label ?from__prefLabel ;
+    	wlink:coordinate [ wlink:lat ?from__lat ; wlink:long ?from__long ] .
+      BIND(CONCAT("/references/page/", REPLACE(STR(?from__id), "^.*\\\\/(.+)", "$1")) AS ?from__dataProviderUrl)
+    
+    ?to__id rdfs:label ?to__prefLabel ;
+    	wlink:coordinate [ wlink:lat ?to__lat ; wlink:long ?to__long ] .
+      BIND(CONCAT("/references/page/", REPLACE(STR(?to__id), "^.*\\\\/(.+)", "$1")) AS ?to__dataProviderUrl)  
+    
+    BIND(IRI(CONCAT(STR(?from__id), "-", REPLACE(STR(?to__id), "http://www.wikidata.org/entity/", ""))) as ?id)
+  } GROUP BY 
+    ?id 
+    ?from__id ?from__prefLabel ?from__lat ?from__long ?from__dataProviderUrl
+    ?to__id ?to__prefLabel ?to__lat ?to__long ?to__dataProviderUrl
+  ORDER BY desc(?instanceCount)
+`
+
+export const peopleMigrationsDialogQuery = `
+  SELECT * {
+    <FILTER>
+    ?id a wlink:Person ;
+      wlink:birth_place <FROM_ID> ;
+      wlink:death_place <TO_ID> ;
+      rdfs:label ?prefLabel .
+    BIND(CONCAT("/actors/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)
+  }
+`
+
 export const peoplePlacesQuery = `
 SELECT DISTINCT ?id ?lat ?long 
   (COUNT(DISTINCT ?person) AS ?instanceCount)
@@ -141,8 +185,8 @@ SELECT DISTINCT ?id ?lat ?long
     
     ?person wlink:has_reference/wlink:references ?id .
       
-    ?id wlink:lat ?lat ;
-      wlink:long ?long .
+    ?id wlink:coordinate [ wlink:lat ?lat ;
+      wlink:long ?long ]
   } GROUP BY ?id ?lat ?long
 `
 

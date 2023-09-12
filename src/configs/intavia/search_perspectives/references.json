@@ -224,6 +224,18 @@
             "sortBy": "instanceCount",
             "sortDirection": "desc"
         },
+        "dataset2": {
+            "containerClass": "four",
+            "facetType": "list",
+            "facetLabelPredicate": "rdfs:label",
+            "filterType": "uriFilter",
+            "predicate": "^(wlink:has_reference/wlink:references)/wlink:dataset",
+            "searchField": false,
+            "sortButton": false,
+            "pieChartButton": false,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc"
+        },
         "type": {
             "containerClass": "four",
             "facetType": "list",
