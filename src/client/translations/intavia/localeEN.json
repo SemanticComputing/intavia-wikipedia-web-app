@@ -82,6 +82,7 @@
     "production_places_heatmap": "production heatmap",
     "last_known_locations": "last known locations",
     "migrations": "migrations",
+    "heatmap": "heatmap",
     "network": "network",
     "export": "export",
     "production_dates": "production dates",

@@ -190,6 +190,21 @@ SELECT DISTINCT ?id ?lat ?long
   } GROUP BY ?id ?lat ?long
 `
 
+// heatmap
+export const actorsHeatmapQuery = `
+SELECT DISTINCT ?id ?lat ?long 
+  (COUNT(DISTINCT ?person) AS ?instanceCount)
+  WHERE {
+    
+    <FILTER>
+    
+    ?person wlink:has_reference/wlink:references ?id .
+      
+    ?id wlink:coordinate [ wlink:lat ?lat ;
+      wlink:long ?long ]
+  } GROUP BY ?id ?lat ?long
+`
+
 //  map popup
 export const placePropertiesInfoWindow = `
   OPTIONAL { ?id rdfs:label ?_label }

@@ -30,6 +30,13 @@
                 10.37
             ],
             "zoom": 2
+        },
+        "peopleHeatmap": {
+            "center": [
+                22.43,
+                10.37
+            ],
+            "zoom": 2
         }
     },
     "resultClasses": {
@@ -78,8 +85,22 @@
                 "createPopUpContent": "createPopUpContentLetterSampo"
             }
         },
-        "peopleMigrations": {
+        "peopleHeatmap": {
             "tabID": 2,
+            "component": "Deck",
+            "tabPath": "heatmap",
+            "tabIcon": "LocationOn",
+            "sparqlQuery": "actorsHeatmapQuery",
+            "facetClass": "actors",
+            "filterTarget": "person",
+            "resultMapper": "mapPlaces",
+            "layerType": "heatmapLayer",
+            "heatmapRadiusPixels": 40,
+            "heatmapThreshold": 0.025,
+            "heatmapIntensity": 1
+        },
+        "peopleMigrations": {
+            "tabID": 3,
             "component": "Deck",
             "tabPath": "migrations",
             "tabIcon": "Redo",
@@ -104,7 +125,7 @@
             "filterTarget": "id"
         },
         "actorNetwork": {
-            "tabID": 3,
+            "tabID": 4,
             "component": "Network",
             "tabPath": "network",
             "tabIcon": "BubbleChart",
@@ -167,7 +188,7 @@
             }
         },
         "export": {
-            "tabID": 4,
+            "tabID": 5,
             "component": "Export",
             "tabPath": "export",
             "tabIcon": "CloudDownload",

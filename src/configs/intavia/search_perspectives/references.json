@@ -119,7 +119,8 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
-            "minWidth": 120
+            "minWidth": 120,
+            "expandedOnInstancePage": true
         },
         {
             "id": "referencer",
@@ -128,7 +129,8 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
-            "minWidth": 150
+            "minWidth": 150,
+            "expandedOnInstancePage": true
         },
         {
             "id": "country",
@@ -191,7 +193,8 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
-            "minWidth": 120
+            "minWidth": 120,
+            "expandedOnInstancePage": true
         },
         {
             "id": "external",
@@ -201,7 +204,8 @@
             "sortValues": false,
             "numberedList": false,
             "minWidth": 150,
-            "onlyOnInstancePage": true
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
         }
     ],
     "facets": {
