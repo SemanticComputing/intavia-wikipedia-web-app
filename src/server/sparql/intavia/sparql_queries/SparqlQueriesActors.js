@@ -245,3 +245,31 @@ export const lifeYearsQuery = `
   GROUP BY ?category 
   ORDER BY ?category
 `
+
+// on actor instance page
+export const networkLinkQuery = `
+SELECT DISTINCT ?source ?target 
+  (COUNT(DISTINCT ?link) AS ?weight) 
+	(STR(?weight) AS ?prefLabel) 
+WHERE {
+  VALUES ?source { <ID> }
+  ?source a wlink:Person ; wlink:has_reference/wlink:references ?link .
+  ?link ^(wlink:has_reference/wlink:references) ?target .
+  FILTER (?target != ?source)
+} GROUPBY ?source ?target
+`
+
+// on actor instance apge
+export const networkNodeQuery = `
+  SELECT DISTINCT ?id ?prefLabel ?class ?href 
+    (COALESCE(?_out, 0)+COALESCE(?_in, 0) AS ?numLetters)
+  WHERE {
+    VALUES ?id { <ID_SET> }
+    ?id a ?class ;
+      rdfs:label ?_label .
+
+    BIND(REPLACE(?_label, ',[^,A-ZÜÅÄÖ]+$', '')AS ?prefLabel)
+    BIND(CONCAT("../../page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1"),"/network") AS ?href)
+  }
+`
+
