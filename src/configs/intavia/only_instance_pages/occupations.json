@@ -1,17 +1,17 @@
 {
-  "id": "places",
+  "id": "occupations",
   "endpoint": {
     "url": "http://localhost:3030/intavia/query",
     "useAuth": false,
     "prefixesFile": "SparqlQueriesPrefixes.js"
   },
-  "sparqlQueriesFile": "SparqlQueriesPlaces.js",
+  "sparqlQueriesFile": "SparqlQueriesOccupations.js",
   "baseURI": "http://www.wikidata.org",
   "URITemplate": "<BASE_URI>/entity/<LOCAL_ID>",
   "resultClasses": {
-    "places": {
+    "occupations": {
       "instanceConfig": {
-        "propertiesQueryBlock": "placePropertiesInstancePage",
+        "propertiesQueryBlock": "occupationPropertiesInstancePage",
         "instancePageResultClasses": {
           "instancePageTable": {
             "tabID": 0,
