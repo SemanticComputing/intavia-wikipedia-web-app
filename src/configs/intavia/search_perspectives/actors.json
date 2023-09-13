@@ -9,7 +9,7 @@
     "baseURI": "http://www.wikidata.org",
     "URITemplate": "<BASE_URI>/entity/<LOCAL_ID>",
     "facetClass": "wlink:Person",
-    "frontPageImage": "main_page/works-452x262.jpg",
+    "frontPageImage": "main_page/7022cc1dd3e0c6dbf9569537c7a7b438.jpg",
     "searchMode": "faceted-search",
     "defaultActiveFacets": [
         "prefLabel"
@@ -188,8 +188,47 @@
                 "minTemp": 1
             }
         },
-        "export": {
+        "eventLineChart": {
             "tabID": 5,
+            "component": "ApexCharts",
+            "tabPath": "yearly_chart",
+            "tabIcon": "ShowChart",
+            "sparqlQuery": "lifeYearsQuery",
+            "facetClass": "actors",
+            "filterTarget": "person",
+            "resultMapper": "mapMultipleLineChart",
+            "resultMapperConfig": {
+                "fillEmptyValues": false
+            },
+            "createChartData": "createMultipleLineChartData",
+            "title": "Yearly births and deaths",
+            "xaxisTitle": "Year",
+            "xaxisType": "category",
+            "xaxisTickAmount": 30,
+            "yaxisTitle": "Count",
+            "seriesTitle": "Count",
+            "stroke": {
+                "curve": "straight",
+                "width": 2
+            },
+            "fill": {
+                "type": "gradient",
+                "gradient": {
+                    "shadeIntensity": 1,
+                    "inverseColors": false,
+                    "opacityFrom": 0.6,
+                    "opacityTo": 0.05,
+                    "stops": [
+                        20,
+                        60,
+                        100,
+                        100
+                    ]
+                }
+            }
+        },
+        "export": {
+            "tabID": 6,
             "component": "Export",
             "tabPath": "export",
             "tabIcon": "CloudDownload",

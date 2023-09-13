@@ -86,10 +86,9 @@
     "network": "network",
     "export": "export",
     "production_dates": "production dates",
-    "event_dates": "event dates",
+    "yearly_chart": "Yearly Chart",
     "map_clusters": "clustered map",
     "map_markers": "map",
-    "heatmap": "heatmap",
     "statistics": "statistics",
     "emloLetterNetwork": "Network of letters",
     "emloSentReceived": "Sent and received letters",
@@ -101,11 +100,8 @@
     "of": "of"
   },
   "lineChart": {
-    "productionCount": "Production",
-    "transferCount": "Transfer of custody",
-    "observationCount": "Observation",
-    "sentCount": "Sent",
-    "receivedCount": "Received",
+    "birthCount": "People born",
+    "deathCount": "People deceased",
     "allCount": "All"
   },
   "exportToYasgui": "open the result table query in yasgui sparql editor",
@@ -211,6 +207,10 @@
         },
         "dataset": {
           "label": "Dataset",
+          "description": "The datasets in InTaVia projects"
+        },
+        "dataset2": {
+          "label": "Dataset 2",
           "description": "The datasets in InTaVia projects"
         },
         "type": {

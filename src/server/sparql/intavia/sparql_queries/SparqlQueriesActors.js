@@ -224,3 +224,24 @@ export const peopleRelatedTo = `
     BIND(CONCAT("/actors/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
   }
 `
+
+// Time series
+export const lifeYearsQuery = `
+  SELECT DISTINCT ?category 
+  (COUNT(?birth) AS ?birthCount) 
+  (COUNT(?death) AS ?deathCount) 
+  WHERE {
+    <FILTER>
+    { 
+      ?person wlink:birth_date/crm:P82a_begin_of_the_begin ?birth .
+      BIND (year(?birth) AS ?category)
+    } 
+    UNION 
+    {
+      ?person wlink:death_date/crm:P82a_begin_of_the_begin ?death .
+      BIND (year(?death) AS ?category)
+    }
+  } 
+  GROUP BY ?category 
+  ORDER BY ?category
+`
