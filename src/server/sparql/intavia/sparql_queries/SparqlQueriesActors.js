@@ -14,12 +14,23 @@ UNION
 UNION
 {
   ?id wlink:has_reference ?link__id .
-  ?link__id rdfs:label ?link__prefLabel ; wlink:references ?reference__id .
+  ?link__id rdfs:label ?link__prefLabel 
   BIND(CONCAT("/sentences/page/", REPLACE(STR(?link__id), "^.*\\\\/(.+)", "$1")) AS ?link__dataProviderUrl)
-
-  ?reference__id rdfs:label ?reference__prefLabel .
-  BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
-
+}
+UNION
+{
+  ?id wlink:has_reference/wlink:references ?reference__id .
+  {
+    FILTER EXISTS { ?reference__id a wlink:Person }
+    ?reference__id rdfs:label ?reference__prefLabel .
+    BIND(CONCAT("/actors/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
+  }
+  UNION
+  {
+    FILTER NOT EXISTS { ?reference__id a wlink:Person }
+    ?reference__id rdfs:label ?reference__prefLabel .
+    BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
+  }
 }
 UNION
 {
@@ -95,10 +106,11 @@ export const actorProperties = `
         BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
       }
     }  
-    UNION
-    {
-      ?id wlink:has_reference/wlink:html ?link_html_UNUSED }
-    UNION
+    UNION  # TODO: ?related__id query too slow
+    #{ # TODO: html-links in results
+    #  ?id wlink:has_reference/wlink:html ?link_html_UNUSED 
+    #}
+    # UNION
     {
       ?id wlink:birth_date/rdfs:label ?birth_date
     }

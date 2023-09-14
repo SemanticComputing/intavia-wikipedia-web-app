@@ -178,8 +178,8 @@
                 "func": "linearScale",
                 "config": {
                     "variable": "instanceCount",
-                    "minAllowed": 3,
-                    "maxAllowed": 30
+                    "minAllowed": 2,
+                    "maxAllowed": 25
                 }
             }
         },
@@ -370,6 +370,16 @@
             "makeLink": true,
             "externalLink": false,
             "sortValues": true,
+            "numberedList": true,
+            "minWidth": 150,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "related",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
             "numberedList": true,
             "minWidth": 150,
             "expandedOnInstancePage": true

@@ -24,6 +24,13 @@
                 10.37
             ],
             "zoom": 2
+        },
+        "placeMigrations": {
+            "center": [
+                22.43,
+                10.37
+            ],
+            "zoom": 2
         }
     },
     "resultClasses": {
@@ -37,8 +44,8 @@
           "paginatedResultsAlwaysExpandRows": true,
           "paginatedResultsRowContentMaxHeight": 190,
           "pagesize": 20,
-          "sortBy": null,
-          "sortDirection": null
+          "sortBy": "number_of_references",
+          "sortDirection": "desc"
         },
         "instanceConfig": {
           "propertiesQueryBlock": "referenceProperties",
@@ -74,6 +81,27 @@
               "createPopUpContent": "createPopUpContentLetterSampo"
           }
       },
+      "placeMigrations": {
+        "tabID": 2,
+        "component": "Deck",
+        "tabPath": "migrations",
+        "tabIcon": "Redo",
+        "sparqlQuery": "placeMigrationsQuery",
+        "facetClass": "references",
+        "filterTarget": "from__id",
+        "layerType": "arcLayer",
+        "arcWidthVariable": "instanceCountScaled",
+        "instanceVariable": "person",
+        "showTooltips": true,
+        "postprocess": {
+            "func": "linearScale",
+            "config": {
+                "variable": "instanceCount",
+                "minAllowed": 2,
+                "maxAllowed": 25
+            }
+        }
+        },
       "export": {
             "tabID": 3,
             "component": "Export",
@@ -113,16 +141,6 @@
             "minWidth": 250
         },
         {
-            "id": "type",
-            "valueType": "string",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": true,
-            "minWidth": 120,
-            "expandedOnInstancePage": true
-        },
-        {
             "id": "referencer",
             "valueType": "object",
             "makeLink": true,
@@ -133,16 +151,47 @@
             "expandedOnInstancePage": true
         },
         {
-            "id": "country",
+            "id": "number_of_references",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "minWidth": 60
+        },
+        {
+            "id": "related",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": true,
+            "minWidth": 150,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "type",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 120,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "location",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
+            "onlyOnInstancePage": true,
             "minWidth": 150
         },
         {
-            "id": "location",
+            "id": "country",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
@@ -157,7 +206,8 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
-            "minWidth": 120
+            "minWidth": 120,
+            "onlyOnInstancePage": true
         },
         {
             "id": "birth_date",
@@ -166,6 +216,7 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
+            "onlyOnInstancePage": true,
             "minWidth": 80
         },
         {
@@ -175,6 +226,7 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
+            "onlyOnInstancePage": true,
             "minWidth": 120
         },
         {
@@ -184,6 +236,7 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
+            "onlyOnInstancePage": true,
             "minWidth": 80
         },
         {
@@ -193,6 +246,7 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": true,
+            "onlyOnInstancePage": true,
             "minWidth": 120
         },
         {
@@ -203,6 +257,7 @@
             "sortValues": true,
             "numberedList": true,
             "minWidth": 120,
+            "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
         },
         {
@@ -250,8 +305,16 @@
             "sortBy": "instanceCount",
             "sortDirection": "desc"
         },
+        "number_of_references": {
+            "containerClass": "five",
+            "facetType": "integer",
+            "filterType": "integerFilterRange",
+            "predicate": "wlink:number_of_references",
+            "sortByPredicate": "wlink:number_of_references",
+            "unit": ""
+        },
         "type": {
-            "containerClass": "four",
+            "containerClass": "eight",
             "facetType": "list",
             "facetLabelPredicate": "rdfs:label",
             "filterType": "uriFilter",
@@ -263,7 +326,7 @@
             "sortDirection": "desc"
         },
         "country": {
-            "containerClass": "four",
+            "containerClass": "eight",
             "facetType": "list",
             "facetLabelPredicate": "rdfs:label",
             "filterType": "uriFilter",
@@ -275,7 +338,7 @@
             "sortDirection": "desc"
         },
         "referencer": {
-            "containerClass": "six",
+            "containerClass": "eight",
             "facetType": "list",
             "facetLabelPredicate": "rdfs:label",
             "filterType": "uriFilter",

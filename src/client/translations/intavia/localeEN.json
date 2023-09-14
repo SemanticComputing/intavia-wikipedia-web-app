@@ -217,9 +217,17 @@
           "label": "Type",
           "description": "Type of the entity"
         },
+        "number_of_references": {
+          "label": "Number of References",
+          "description": "Number of actors refering to this item"
+        },
         "referencer": {
           "label": "Referenced by",
-          "description": "The author(s) who have references to this page."
+          "description": "The author(s) who have references to this page"
+        },
+        "related": {
+          "label": "Related terms",
+          "description": "Terms that are regularly mentioned in the same sentence"
         },
         "country": {
           "label": "Country",
