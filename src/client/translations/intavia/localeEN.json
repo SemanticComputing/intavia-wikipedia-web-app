@@ -5,9 +5,9 @@
     "description": "The Sampo-UI framework makes it possible to create highly customizable, user-friendly, and responsive user interfaces using current state-of-the-art JavaScript libraries and data from SPARQL endpoints."
   },
   "appTitle": {
-    "short": "Sampo-UI",
-    "mobile": "S-UI",
-    "long": "&nbsp; &nbsp; Sampo-UI &nbsp; &nbsp;",
+    "short": "InTaPedia–Sampo",
+    "mobile": "IP-Sampo",
+    "long": "&nbsp; &nbsp; InTaPedia–Sampo &nbsp; &nbsp;",
     "subheading": "\"Here to forge for us the Sampo, Hammer us the lid in colors\""
   },
   "appDescription1": "Sampo is a web service for searching and studying place names. The search results can be viewed as a table, on maps, and as statistical distributions. Historical and current background maps are provided.",
@@ -213,6 +213,18 @@
           "label": "Dataset 2",
           "description": "The datasets in InTaVia projects"
         },
+        "dataset3": {
+          "label": "Dataset 3",
+          "description": "The datasets in InTaVia projects"
+        },
+        "dataset4": {
+          "label": "Dataset 4",
+          "description": "The datasets in InTaVia projects"
+        },
+        "in_dataset": {
+          "label": "Used in Datasets",
+          "description": "The datasets refering this resource"
+        },
         "type": {
           "label": "Type",
           "description": "Type of the entity"
@@ -340,6 +352,10 @@
         "dataset": {
           "label": "Dataset",
           "description": "The datasets in InTaVia projects"
+        },
+        "dataset2": {
+          "label": "Dataset 2",
+          "description": "The second dataset where the same actors are present"
         },
         "gender": {
           "label": "Gender",

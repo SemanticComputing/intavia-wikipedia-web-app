@@ -67,11 +67,11 @@
                         "tabPath": "network",
                         "tabIcon": "BubbleChart",
                         "pageType": "instancePage",
-                        "sparqlQuery": "networkLinkQuery",
+                        "sparqlQuery": "networkInstanceLinkQuery",
                         "sparqlQueryNodes": "networkNodeQuery",
                         "useNetworkAPI": true,
-                        "limit": 100,
-                        "optimize": 2.0,
+                        "limit": 200,
+                        "optimize": 1.5,
                         "preprocess": "preprocessEgo",
                         "style": [
                             {
@@ -192,14 +192,14 @@
             "component": "Network",
             "tabPath": "network",
             "tabIcon": "BubbleChart",
-            "sparqlQuery": "networkLinksQuery",
+            "sparqlQuery": "networkFacetLinkQuery",
             "facetClass": "actors",
-            "sparqlQueryNodes": "networkNodesFacetQuery",
-            "filterTarget": "actor",
+            "sparqlQueryNodes": "networkFacetNodeQuery",
+            "filterTarget": "source",
             "useNetworkAPI": true,
-            "limit": 200,
+            "limit": 100,
             "optimize": 1.5,
-            "preprocess": "preprocessLetterSampo",
+            "preprocess": "preprocessEgo",
             "style": [
                 {
                     "selector": "node",
@@ -446,6 +446,18 @@
             "sortDirection": "asc"
         },
         "dataset": {
+            "containerClass": "four",
+            "facetType": "list",
+            "facetLabelPredicate": "rdfs:label",
+            "filterType": "uriFilter",
+            "predicate": "wlink:dataset",
+            "searchField": false,
+            "sortButton": false,
+            "pieChartButton": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc"
+        },
+        "dataset2": {
             "containerClass": "four",
             "facetType": "list",
             "facetLabelPredicate": "rdfs:label",

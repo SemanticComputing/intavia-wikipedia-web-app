@@ -254,12 +254,25 @@ export const lifeYearsQuery = `
       BIND (year(?death) AS ?category)
     }
   } 
-  GROUP BY ?category 
+  GROUP BY ?category
   ORDER BY ?category
 `
 
+// on actor facet page
+export const networkFacetLinkQuery = `
+SELECT DISTINCT ?source ?target 
+  (1 AS ?weight) 
+	("" AS ?prefLabel) 
+WHERE {
+  <FILTER>
+  ?source a wlink:Person ; wlink:has_reference/wlink:references ?link .
+  ?target wlink:has_reference/wlink:references ?link .
+  FILTER (?target != ?source)
+}
+`
+
 // on actor instance page
-export const networkLinkQuery = `
+export const networkInstanceLinkQuery = `
 SELECT DISTINCT ?source ?target 
   (COUNT(DISTINCT ?link) AS ?weight) 
 	(STR(?weight) AS ?prefLabel) 
@@ -271,16 +284,64 @@ WHERE {
 } GROUPBY ?source ?target
 `
 
-// on actor instance apge
-export const networkNodeQuery = `
-  SELECT DISTINCT ?id ?prefLabel ?class ?href 
-    (COALESCE(?_out, 0)+COALESCE(?_in, 0) AS ?numLetters)
+//  test of showing People-Pages on the same network
+export const networkInstanceLinkQuery_TEST = `
+SELECT DISTINCT ?source ?target 
+  (1 AS ?weight) # (COUNT(DISTINCT ?link) AS ?weight) 
+	("" AS ?prefLabel) 
+WHERE {
+  VALUES ?source { <ID> }
+  {
+  ?source a wlink:Person ; wlink:has_reference/wlink:references ?target 
+  } 
+  UNION 
+  { ?target wlink:has_reference/wlink:references ?target ; a wlink:Page ; 
+  }
+  # ?link ^(wlink:has_reference/wlink:references) ?target .
+  FILTER (?target != ?source)
+} GROUPBY ?source ?target
+`
+
+// actor facet page networkNodesFacetQuery
+export const networkFacetNodeQuery = `
+  SELECT DISTINCT ?id ?prefLabel ?class ?href ?color
+  
   WHERE {
     VALUES ?id { <ID_SET> }
     ?id a ?class ;
-      rdfs:label ?_label .
+      rdfs:label ?prefLabel .
 
-    BIND(REPLACE(?_label, ',[^,A-ZÜÅÄÖ]+$', '')AS ?prefLabel)
+    OPTIONAL {
+      VALUES (?ds ?color) {
+        (<http://www.intavia.eu/wikipedia/datasets/bs>    "blue")
+        (<http://www.intavia.eu/wikipedia/datasets/apis>  "green")
+        (<http://www.intavia.eu/wikipedia/datasets/biographynet>  "orange")
+        (<http://www.intavia.eu/wikipedia/datasets/sbi>   "red")
+      }
+      ?id wlink:dataset ?ds .
+    }
+
+    BIND(CONCAT("../../actors/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1"),"/network") AS ?href)
+  }
+`
+
+// on actor instance page
+export const networkNodeQuery = `
+  SELECT DISTINCT ?id ?prefLabel ?class ?href ?color
+  WHERE {
+    VALUES ?id { <ID_SET> }
+    ?id a ?class ;
+      rdfs:label ?prefLabel .
+    OPTIONAL {
+      VALUES (?ds ?color) {
+        (<http://www.intavia.eu/wikipedia/datasets/bs>    "blue")
+        (<http://www.intavia.eu/wikipedia/datasets/apis>  "green")
+        (<http://www.intavia.eu/wikipedia/datasets/biographynet>  "orange")
+        (<http://www.intavia.eu/wikipedia/datasets/sbi>   "red")
+      }
+      ?id wlink:dataset ?ds .
+    }
+      
     BIND(CONCAT("../../page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1"),"/network") AS ?href)
   }
 `

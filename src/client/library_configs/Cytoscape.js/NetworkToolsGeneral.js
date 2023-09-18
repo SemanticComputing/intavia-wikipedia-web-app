@@ -107,16 +107,16 @@ export const preprocessEgo = elements => {
   res = (new ColorScaler('hsl(30, 64%, 85%)', 'hsl(30, 64%, 35%)')).fitTransform(arr)
   elements.edges.forEach((ele, i) => { ele.data.color = res[i] })
 
-  // nodes
+  // nodes 
   arr = elements.nodes.map(ele => has(ele.data, 'distance') ? ele.data.distance : 3)
 
-  // node size
+  // node size 
   res = (new ColorScaler('20px', '8px')).fitTransform(arr)
   elements.nodes.forEach((ele, i) => { ele.data.size = res[i] })
 
   // node color
-  res = (new ColorScaler('rgb(255,0,0)', 'rgb(0,0,0)')).fitTransform(arr)
-  elements.nodes.forEach((ele, i) => { ele.data.color = res[i] })
+  // res = (new ColorScaler('rgb(255,0,0)', 'rgb(0,0,0)')).fitTransform(arr)
+  // elements.nodes.forEach((ele, i) => { ele.data.color = res[i] })
 }
 
 //  preprocess by ego node distance

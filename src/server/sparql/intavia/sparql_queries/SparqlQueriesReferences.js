@@ -84,6 +84,10 @@ export const referenceProperties = `
       ?type__id skos:prefLabel|rdfs:label ?type__prefLabel .
       BIND(?id AS ?type__dataProviderUrl)
     }
+    UNION
+    {
+      ?id wlink:number_of_references ?number_of_references .
+    }
     UNION 
     {			?referencer__id  wlink:has_reference/wlink:references ?id ;
               rdfs:label ?referencer__prefLabel .
@@ -106,6 +110,13 @@ export const referenceProperties = `
         }
         
       } GROUPBY ?id ?related__id ORDERBY DESC(?_count)
+    }
+    UNION  	
+    {
+      SELECT ?id (COUNT(DISTINCT ?_prs) AS ?_count) (CONCAT(?ds, ' (', STR(?_count), ')') AS ?in_dataset)
+      WHERE {
+        ?_prs wlink:has_reference/wlink:references ?id ; wlink:dataset/rdfs:label ?ds
+      } GROUPBY ?id ?ds ORDERBY DESC(?_count)
     }
     UNION
     {
@@ -219,4 +230,67 @@ WHERE {
     ?from__id ?from__prefLabel ?from__lat ?from__long 
     ?to__id ?to__prefLabel ?to__lat ?to__long 
   ORDER BY desc(?instanceCount) LIMIT 1000
+`
+
+// on reference instance page
+export const networkInstanceLinkQuery = `
+SELECT DISTINCT ?source ?target 
+  (COUNT(DISTINCT ?link) AS ?weight) 
+	(STR(?weight) AS ?prefLabel) 
+WHERE {
+  VALUES ?source { <ID> }
+  ?source a wlink:Page .
+  ?link wlink:references ?source ;
+        wlink:references ?target .
+  ?target a wlink:Page .
+  
+  FILTER (?target != ?source)
+  FILTER NOT EXISTS { ?target ?_b1 ?source }
+  FILTER NOT EXISTS { ?source ?_b2 ?target }
+  
+} GROUPBY ?source ?target 
+`
+
+// on reference facet page 
+export const networkFacetLinkQuery = `
+SELECT DISTINCT ?source ?target (COUNT(DISTINCT ?link) AS ?weight) (STR(?weight) AS ?prefLabel)
+WHERE {
+  <FILTER>
+
+  ?source a wlink:Page .
+  ?link wlink:references ?source ;
+        wlink:references ?target .
+  ?target a wlink:Page .
+  
+  FILTER (?target != ?source)
+  FILTER NOT EXISTS { ?target ?_b1 ?source }
+  FILTER NOT EXISTS { ?source ?_b2 ?target }
+  
+} GROUPBY ?source ?target 
+`
+
+// reference facet page 
+export const networkFacetNodeQuery = `
+  SELECT DISTINCT ?id ?prefLabel ?class ?href 
+  
+  WHERE {
+    VALUES ?id { <ID_SET> }
+    ?id a ?class ;
+      rdfs:label ?prefLabel .
+
+    BIND(CONCAT("page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1"),"/network") AS ?href)
+  }
+`
+
+// on reference instance page
+export const networkNodeQuery = `
+SELECT DISTINCT ?id ?prefLabel ?class ?href 
+  
+WHERE {
+  VALUES ?id { <ID_SET> }
+  ?id a ?class ;
+    rdfs:label ?prefLabel .
+
+  BIND(CONCAT("../../page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1"),"/network") AS ?href)
+}
 `
