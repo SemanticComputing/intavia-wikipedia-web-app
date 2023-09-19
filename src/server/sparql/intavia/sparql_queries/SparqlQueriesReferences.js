@@ -109,7 +109,7 @@ export const referenceProperties = `
           BIND('actors' as ?_link)
         }
         
-      } GROUPBY ?id ?related__id ORDERBY DESC(?_count)
+      } GROUPBY ?id ?related__id ORDERBY DESC(?_count) ?related__prefLabel
     }
     UNION  	
     {

@@ -119,6 +119,36 @@ export const preprocessEgo = elements => {
   // elements.nodes.forEach((ele, i) => { ele.data.color = res[i] })
 }
 
+export const preprocessPointCloud = elements => {
+  const maxEdgeWidth = 8
+
+  //  edges
+  let arr = elements.edges.map(ele => ele.data.weight || 1)
+
+  //  edge width
+  let res = (new ValueScaler(1.0, maxEdgeWidth)).fitTransform(arr)
+  elements.edges.forEach((ele, i) => { ele.data.weight = res[i] })
+
+  //  edge color
+  // https://www.w3schools.com/colors/colors_hsl.asp
+  res = (new ColorScaler('hsl(30, 64%, 85%)', 'hsl(30, 64%, 35%)')).fitTransform(arr)
+  elements.edges.forEach((ele, i) => { ele.data.color = res[i] })
+
+  elements.edges = []
+  // nodes 
+  //arr = elements.nodes.map(ele => has(ele.data, 'distance') ? ele.data.distance : 3)
+
+  // node size 
+  // res = (new ColorScaler('20px', '8px')).fitTransform(arr)
+  // elements.nodes.forEach((ele, i) => { ele.data.size = res[i] })
+
+  elements.nodes.forEach((ele, i) => { ele.position = { x: 25.0*ele.data.x, y: 25.0*ele.data.y } })
+  // node color
+  // res = (new ColorScaler('rgb(255,0,0)', 'rgb(0,0,0)')).fitTransform(arr)
+  // elements.nodes.forEach((ele, i) => { ele.data.color = res[i] })
+  console.log(elements.nodes)
+}
+
 //  preprocess by ego node distance
 export const preprocessDistance = elements => {
   const maxEdgeWidth = 8

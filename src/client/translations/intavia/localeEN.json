@@ -90,6 +90,7 @@
     "map_clusters": "clustered map",
     "map_markers": "map",
     "statistics": "statistics",
+    "pointcloud": "Point Cloud",
     "emloLetterNetwork": "Network of letters",
     "emloSentReceived": "Sent and received letters",
     "download": "download",
@@ -395,7 +396,11 @@
         },
         "place": {
           "label": "Activity location",
-          "description": "Place(s) of activity linked to this actor."
+          "description": "Place(s) of activity linked to this actor"
+        },
+        "related": {
+          "label": "Related actors",
+          "description": "Actors with references to same entities"
         },
         "source": {
           "label": "Source",

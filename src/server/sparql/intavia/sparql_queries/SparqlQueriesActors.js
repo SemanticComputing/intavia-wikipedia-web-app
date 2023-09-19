@@ -106,11 +106,7 @@ export const actorProperties = `
         BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
       }
     }  
-    UNION  # TODO: ?related__id query too slow
-    #{ # TODO: html-links in results
-    #  ?id wlink:has_reference/wlink:html ?link_html_UNUSED 
-    #}
-    # UNION
+    UNION 
     {
       ?id wlink:birth_date/rdfs:label ?birth_date
     }
@@ -142,6 +138,17 @@ export const actorProperties = `
       ?id owl:sameAs ?external__id .
       BIND (STR(?external__id) AS ?external__prefLabel)
       BIND (URI(?external__id) AS ?external__dataProviderUrl)
+    }
+    UNION
+    {
+      SELECT DISTINCT ?id ?related__id 
+    	(CONCAT(?_label, " (", GROUP_CONCAT(DISTINCT ?link; separator="; "), ")") AS ?related__prefLabel)
+      (CONCAT("/actors/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
+      WHERE {
+        ?id ^wlink:relates_to [ a wlink:Distance ; wlink:relates_to ?related__id ; wlink:value ?value ; wlink:link_by/rdfs:label ?link ]     
+        FILTER (?id != ?related__id)
+        ?related__id rdfs:label ?_label
+      } GROUPBY ?id ?related__id ?_label ORDER BY ?value
     }
 `
 
@@ -265,8 +272,7 @@ SELECT DISTINCT ?source ?target
 	("" AS ?prefLabel) 
 WHERE {
   <FILTER>
-  ?source a wlink:Person ; wlink:has_reference/wlink:references ?link .
-  ?target wlink:has_reference/wlink:references ?link .
+  ?source a wlink:Person ; ^wlink:relates_to/wlink:relates_to ?target .
   FILTER (?target != ?source)
 }
 `
@@ -313,10 +319,10 @@ export const networkFacetNodeQuery = `
 
     OPTIONAL {
       VALUES (?ds ?color) {
-        (<http://www.intavia.eu/wikipedia/datasets/bs>    "blue")
-        (<http://www.intavia.eu/wikipedia/datasets/apis>  "green")
-        (<http://www.intavia.eu/wikipedia/datasets/biographynet>  "orange")
-        (<http://www.intavia.eu/wikipedia/datasets/sbi>   "red")
+        (datasets:bs    "blue")
+        (datasets:apis  "green")
+        (datasets:biographynet  "orange")
+        (datasets:sbi   "red")
       }
       ?id wlink:dataset ?ds .
     }
@@ -334,10 +340,10 @@ export const networkNodeQuery = `
       rdfs:label ?prefLabel .
     OPTIONAL {
       VALUES (?ds ?color) {
-        (<http://www.intavia.eu/wikipedia/datasets/bs>    "blue")
-        (<http://www.intavia.eu/wikipedia/datasets/apis>  "green")
-        (<http://www.intavia.eu/wikipedia/datasets/biographynet>  "orange")
-        (<http://www.intavia.eu/wikipedia/datasets/sbi>   "red")
+        (datasets:bs    "blue")
+        (datasets:apis  "green")
+        (datasets:biographynet  "orange")
+        (datasets:sbi   "red")
       }
       ?id wlink:dataset ?ds .
     }
@@ -346,3 +352,30 @@ export const networkNodeQuery = `
   }
 `
 
+//  hack query for point cloud 'links' where there are no links
+export const pointCloudLinksQuery = `
+  SELECT DISTINCT ?source (?source AS ?target) ("" as ?prefLabel)
+  WHERE {
+    <FILTER>
+    ?source wlink:coordinate []
+  }
+`
+
+//  Point Cloud coordinates and node metadata
+export const pointCloudNodesQuery = `
+  SELECT DISTINCT ?id ?prefLabel (10 AS ?size) ?href ?x ?y ?color
+  WHERE {
+    VALUES ?id { <ID_SET> }
+    ?id wlink:coordinate [ wlink:x ?x ; wlink:y ?y ] ;
+        rdfs:label ?prefLabel ;
+        wlink:dataset ?ds .
+
+    VALUES (?ds ?color) {
+        (datasets:bs    "blue")
+        (datasets:apis  "green")
+        (datasets:biographynet  "orange")
+        (datasets:sbi   "red")
+    }
+    BIND(CONCAT("../page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1"),"/table") AS ?href)
+  }
+`

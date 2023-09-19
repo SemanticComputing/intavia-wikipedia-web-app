@@ -289,8 +289,41 @@
                 }
             }
         },
-        "export": {
+        "pointCloud": {
             "tabID": 6,
+            "component": "Network",
+            "tabPath": "pointcloud",
+            "tabIcon": "BubbleChart",
+            "sparqlQuery": "pointCloudLinksQuery",
+            "facetClass": "actors",
+            "sparqlQueryNodes": "pointCloudNodesQuery",
+            "filterTarget": "source",
+            "useNetworkAPI": true,
+            "limit": 7500,
+            "optimize": 1.0,
+            "preprocess": "preprocessPointCloud",
+            "style": [
+                {
+                    "selector": "node",
+                    "style": {
+                        "shape": "ellipse",
+                        "font-size": 10,
+                        "label": "data(prefLabel)",
+                        "height": "data(size)",
+                        "width": "data(size)",
+                        "background-color": "data(color)",
+                        "color": "gray"
+                    }
+                }
+            ],
+            "layout": {
+                "name": "preset",
+                "fit": true,
+                "padding": 30
+            }
+        },
+        "export": {
+            "tabID": 7,
             "component": "Export",
             "tabPath": "export",
             "tabIcon": "CloudDownload",
@@ -375,16 +408,6 @@
             "expandedOnInstancePage": true
         },
         {
-            "id": "related",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": false,
-            "numberedList": true,
-            "minWidth": 150,
-            "expandedOnInstancePage": true
-        },
-        {
             "id": "birth_date",
             "valueType": "string",
             "makeLink": false,
@@ -419,6 +442,17 @@
             "sortValues": false,
             "numberedList": false,
             "minWidth": 120
+        },
+        {
+            "id": "related",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": true,
+            "minWidth": 150,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
         },
         {
             "id": "external",
@@ -494,7 +528,7 @@
             "sortDirection": "desc"
         },
         "occupation": {
-            "containerClass": "four",
+            "containerClass": "nine",
             "facetType": "list",
             "facetLabelPredicate": "rdfs:label",
             "filterType": "uriFilter",
