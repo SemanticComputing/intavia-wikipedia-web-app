@@ -9,7 +9,7 @@
     "baseURI": "http://www.wikidata.org",
     "URITemplate": "<BASE_URI>/entity/<LOCAL_ID>",
     "facetClass": "wlink:Page",
-    "frontPageImage": "main_page/works-452x262.jpg",
+    "frontPageImage": "main_page/manuscripts-452x262.jpg",
     "searchMode": "faceted-search",
     "defaultActiveFacets": [
       "prefLabel"
@@ -65,8 +65,8 @@
                 "sparqlQuery": "networkInstanceLinkQuery",
                 "sparqlQueryNodes": "networkNodeQuery",
                 "useNetworkAPI": true,
-                "limit": 200,
-                "optimize": 1.5,
+                "limit": 60,
+                "optimize": 2.0,
                 "preprocess": "preprocessEgo",
                 "style": [
                     {
@@ -143,28 +143,7 @@
               "createPopUpContent": "createPopUpContentLetterSampo"
           }
       },
-      "placeMigrations": {
-        "tabID": 2,
-        "component": "Deck",
-        "tabPath": "migrations",
-        "tabIcon": "Redo",
-        "sparqlQuery": "placeMigrationsQuery",
-        "facetClass": "references",
-        "filterTarget": "from__id",
-        "layerType": "arcLayer",
-        "arcWidthVariable": "instanceCountScaled",
-        "instanceVariable": "person",
-        "showTooltips": true,
-        "postprocess": {
-            "func": "linearScale",
-            "config": {
-                "variable": "instanceCount",
-                "minAllowed": 2,
-                "maxAllowed": 25
-                }
-            }
-        },
-        "referenceNetwork": {
+    "referenceNetwork": {
             "tabID": 4,
             "component": "Network",
             "tabPath": "network",
@@ -410,12 +389,16 @@
     ],
     "facets": {
         "prefLabel": {
-            "containerClass": "two",
-            "facetType": "text",
-            "filterType": "textFilter",
+            "containerClass": "ten",
+            "facetType": "list",
             "facetLabelPredicate": "rdfs:label",
-            "sortByPredicate": "rdfs:label",
-            "textQueryProperty": "rdfs:label"
+            "filterType": "uriFilter",
+            "predicate": "owl:sameAs/^owl:sameAs",
+            "searchField": true,
+            "sortButton": true,
+            "pieChartButton": false,
+            "sortBy": "prefLabel",
+            "sortDirection": "asc"
         },
         "dataset": {
             "containerClass": "four",

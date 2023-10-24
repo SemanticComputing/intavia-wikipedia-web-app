@@ -53,5 +53,9 @@ export const sentenceProperties = `
     {
       ?id wlink:section ?section 
     }
+    UNION
+    {
+      ?id wlink:html ?html
+    }
 
 `

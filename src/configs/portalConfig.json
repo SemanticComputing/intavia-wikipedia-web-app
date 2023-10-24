@@ -43,10 +43,10 @@
     "layoutConfig": {
         "colorPalette": {
             "primary": {
-                "main": "#212121"
+                "main": "#609060"
             },
             "secondary": {
-                "main": "#EB1806"
+                "main": "#CB0806"
             }
         },
         "hundredPercentHeightBreakPoint": 900,
@@ -55,7 +55,7 @@
         "paginationToolbarHeight": 37,
         "tableFontSize": "0.8rem",
         "topBar": {
-            "logoImage": "logos/logo.png",
+            "logoImage": "logos/logo_intavia.png",
             "logoTextTransform": "none",
             "hideLogoTextOnMobile": true,
             "showLanguageButton": true,
@@ -89,7 +89,7 @@
         },
         "infoHeader": {
             "default": {
-                "height": 49,
+                "height": 69,
                 "expandedContentHeight": 160,
                 "headingVariant": "h4",
                 "infoIconFontSize": 40

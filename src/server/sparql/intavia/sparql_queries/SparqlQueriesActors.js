@@ -13,12 +13,6 @@ UNION
 }
 UNION
 {
-  ?id wlink:has_reference ?link__id .
-  ?link__id rdfs:label ?link__prefLabel 
-  BIND(CONCAT("/sentences/page/", REPLACE(STR(?link__id), "^.*\\\\/(.+)", "$1")) AS ?link__dataProviderUrl)
-}
-UNION
-{
   ?id wlink:has_reference/wlink:references ?reference__id .
   {
     FILTER EXISTS { ?reference__id a wlink:Person }
@@ -113,6 +107,12 @@ export const actorProperties = `
     UNION
     {
       ?id wlink:death_date/rdfs:label ?death_date
+    }
+    UNION
+    {
+      ?id wlink:occupation ?occupation__id .
+      ?occupation__id rdfs:label ?occupation__prefLabel .
+      BIND(CONCAT("/references/page/", REPLACE(STR(?occupation__id), "^.*\\\\/(.+)", "$1")) AS ?occupation__dataProviderUrl)
     }
     UNION
     {

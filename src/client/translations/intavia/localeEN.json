@@ -5,10 +5,10 @@
     "description": "The Sampo-UI framework makes it possible to create highly customizable, user-friendly, and responsive user interfaces using current state-of-the-art JavaScript libraries and data from SPARQL endpoints."
   },
   "appTitle": {
-    "short": "InTaPedia–Sampo",
-    "mobile": "IP-Sampo",
+    "short": "InTaPedia",
+    "mobile": "InTaPedia",
     "long": "&nbsp; &nbsp; InTaPedia–Sampo &nbsp; &nbsp;",
-    "subheading": "\"Here to forge for us the Sampo, Hammer us the lid in colors\""
+    "subheading": "InTaVia data enriched with Wikipedia links"
   },
   "appDescription1": "Sampo is a web service for searching and studying place names. The search results can be viewed as a table, on maps, and as statistical distributions. Historical and current background maps are provided.",
   "appDescription2": "Start by choosing source dataset(s) and input a place name on the search field. Alternatively you can search by area.",
@@ -191,7 +191,7 @@
     "references": {
       "label": "References",
       "facetResultsType": "references",
-      "shortDescription": "Physical manuscript objects",
+      "shortDescription": "Wikipedia pages referenced in biographical descriptions",
       "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Use this perspective to access data related to physical manuscript objects. If two or more source datasets include the same manuscript and this has been verified, the information from the source datasets has been merged into one manuscript. See <a href=\"/instructions\">instructions</a> for using the filters. The result view can be selected using the tabs: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TABLE</STRONG> view includes all manuscripts in the MMM data. One table row is equivalent to one manuscript. </li> <li> <strong>PRODUCTION PLACES</STRONG> view visualizes the connection between manuscripts and the places where they were produced. </li> <li> <strong>MIGRATIONS</strong> view visualizes the migration of a manuscript from place of production to its most recently observed location. </li> <li> <strong>EXPORT</strong> the SPARQL query used to generate the result table view into YASGUI query editor. </li> </ul>",
       "instancePage": {
         "label": "Reference",
@@ -208,51 +208,51 @@
         },
         "dataset": {
           "label": "Dataset",
-          "description": "The datasets in InTaVia projects"
+          "description": "Limit the number of results by choosing one of the InTaVia source datasets"
         },
         "dataset2": {
           "label": "Dataset 2",
-          "description": "The datasets in InTaVia projects"
+          "description": "Limit the number of results by choosing a second source dataset"
         },
         "dataset3": {
           "label": "Dataset 3",
-          "description": "The datasets in InTaVia projects"
+          "description": "Limit the number of results by choosing a third source dataset"
         },
         "dataset4": {
           "label": "Dataset 4",
-          "description": "The datasets in InTaVia projects"
+          "description": "Limit the number of results by choosing a fourth source dataset"
         },
         "in_dataset": {
-          "label": "Used in Datasets",
-          "description": "The datasets refering this resource"
+          "label": "Referenced in Datasets",
+          "description": "The datasets where this resource is referenced"
         },
         "type": {
           "label": "Type",
-          "description": "Type of the entity"
+          "description": "Type of the entity. This hierarchy is extracted from Wikidata."
         },
         "number_of_references": {
           "label": "Number of References",
-          "description": "Number of actors refering to this item"
+          "description": "Number of actors refering to this item."
         },
         "referencer": {
           "label": "Referenced by",
-          "description": "The author(s) who have references to this page"
+          "description": "The author(s) who have references to this page."
         },
         "related": {
           "label": "Related terms",
-          "description": "Terms that are regularly mentioned in the same sentence"
+          "description": "Terms that are regularly mentioned in the same sentence."
         },
         "country": {
           "label": "Country",
-          "description": "Country"
+          "description": "Country."
         },
         "location": {
           "label": "Location",
-          "description": "Location"
+          "description": "Location."
         },
         "coordinate": {
           "label": "Coordinate",
-          "description": "Coordinate"
+          "description": "Geocoordinate location."
         },
         "image": {
           "label": "Image",
@@ -276,7 +276,7 @@
         },
         "source": {
           "label": "Source",
-          "description": "The source dataset(s) (Bibale, Bodleian, or SDBM) contributing the information on the manuscript. If two or more source datasets include the same manuscript and this has been manually verified, the information from the source datasets have been merged into one manuscript (table row). Click on the links to view the original record on the source’s website."
+          "description": "Source"
         },
         "occupation": {
           "label": "Occupation",
@@ -291,10 +291,10 @@
     "sentences": {
       "label": "Sentences",
       "facetResultsType": "sentences",
-      "shortDescription": "Physical manuscript objects",
+      "shortDescription": "Sentences extracted from Wikipedia pages",
       "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Use this perspective to access data related to physical manuscript objects. If two or more source datasets include the same manuscript and this has been verified, the information from the source datasets has been merged into one manuscript. See <a href=\"/instructions\">instructions</a> for using the filters. The result view can be selected using the tabs: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TABLE</STRONG> view includes all manuscripts in the MMM data. One table row is equivalent to one manuscript. </li> <li> <strong>PRODUCTION PLACES</STRONG> view visualizes the connection between manuscripts and the places where they were produced. </li> <li> <strong>MIGRATIONS</strong> view visualizes the migration of a manuscript from place of production to its most recently observed location. </li> <li> <strong>EXPORT</strong> the SPARQL query used to generate the result table view into YASGUI query editor. </li> </ul>",
       "instancePage": {
-        "label": "Reference",
+        "label": "Sentence",
         "description": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> MMM’s Manuscript entity corresponds to <a href='https://www.ifla.org/publications/node/11240' target='_blank' rel='noopener noreferrer'>FRBRoo’s</a> Manifestation Singleton, defined as \"physical objects that each carry an instance of [an Expression], and that were produced as unique objects...\" The various types of records that describe manuscripts in each of the three contributing MMM datasets have been mapped to this entity. </p> <h6 class=\"MuiTypography-root MuiTypography-h6\"> Manuscript labels </h6> <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> If the Bibale or Oxford databases reference a shelf mark for the manuscript, that information will appear as its label. Otherwise, an SDBM ID number will serve as its label. SDBM ID numbers contain prefixes that indicate different things about the type of record they contain: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> SDBM_MS: SDBM Manuscript Record, which aggregates the data of two or more SDBM Entries. Each Entry represents a different observation of a manuscript at a different point in time, derived from various sources. </li> <li> SDBM_MS_orphan: a single Entry in the SDBM, meaning it has not been linked to any other Entries and therefore has no SDBM Manuscript Record. </li> <li> SDBM_MS_part: a record identified as a fragment of a larger manuscript. </li> </ul> <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"></p>"
       },
       "properties": {
@@ -310,6 +310,10 @@
           "label": "Reference",
           "description": "The datasets in InTaVia projects"
         },
+        "html": {
+          "label": "HTML representation",
+          "description": "Representation as in the Wikipedia page."
+        },
         "person": {
           "label": "Person",
           "description": "Type of the entity"
@@ -318,20 +322,20 @@
           "label": "Dataset",
           "description": "The datasets in InTaVia projects"
         },
+        "source": {
+          "label": "Source",
+          "description": "The source Wikipedia website."
+        },
         "section": {
           "label": "Section",
           "description": "Section in the Wikipedia page"
-        },
-        "source": {
-          "label": "Source",
-          "description": "The source dataset(s) (Bibale, Bodleian, or SDBM) contributing the information on the manuscript. If two or more source datasets include the same manuscript and this has been manually verified, the information from the source datasets have been merged into one manuscript (table row). Click on the links to view the original record on the source’s website."
         }
       }
     },
     "actors": {
-      "label": "Actors",
-      "facetResultsType": "actors",
-      "shortDescription": "People and institutions related to manuscripts",
+      "label": "People",
+      "facetResultsType": "people",
+      "shortDescription": "People in InTaVia dataset with Wikipedia pages",
       "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> This perspective provides access to data related to the persons and institutions who impacted the production or dissemination of manuscripts and works. Actors include authors of works, artists and scribes who produced manuscripts, and the individual owners and institutions who bought or sold manuscripts. If two or more source datasets include the same Actor and this has been verified, the information from the source datasets has been merged into one Actor. See <a href=\"/instructions\">instructions</a> for using the filters. The result view can be selected using the tabs: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TABLE</STRONG> view includes all Actors in the MMM data. </li> <li> <strong>MAP</STRONG> view visualizes the connection between Actors and the places where they lived or were located. </li> <li> <strong>EXPORT</strong> the SPARQL query used to generate the result table view into YASGUI query editor. </li> </ul>",
       "instancePage": {
         "label": "Actor",

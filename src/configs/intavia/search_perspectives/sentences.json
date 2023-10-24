@@ -8,7 +8,7 @@
     "sparqlQueriesFile": "SparqlQueriesSentences.js",
     "baseURI": "http://www.intavia.eu/wikipedia/sentences",
     "facetClass": "wlink:Sentence",
-    "frontPageImage": "main_page/manuscripts-452x262.jpg",
+    "frontPageImage": "main_page/works-452x262.jpg",
     "searchMode": "faceted-search",
     "defaultActiveFacets": [
       "prefLabel"
@@ -71,15 +71,16 @@
             "minWidth": 450
         },
         {
-            "id": "section",
-            "valueType": "string",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": true,
-            "minWidth": 60,
-            "onlyOnInstancePage": true,
-            "expandedOnInstancePage": true
+          "id": "html",
+          "valueType": "string",
+          "renderAsHTML": true,
+          "HTMLParserTask": "createReactRouterLinks",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": false,
+          "numberedList": false,
+          "onlyOnInstancePage": true,
+          "expandedOnInstancePage": false
         },
         {
             "id": "person",
@@ -108,6 +109,17 @@
             "sortValues": true,
             "numberedList": true,
             "minWidth": 60
+        },
+        {
+            "id": "section",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 60,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
         },
         {
             "id": "source",
@@ -139,6 +151,16 @@
           "sortBy": "instanceCount",
           "sortByPredicate": "(^wlink:has_reference)/rdfs:label",
           "sortDirection": "desc"
+      },
+      "dataset": {
+        "containerClass": "four",
+        "facetType": "list",
+        "facetLabelPredicate": "rdfs:label",
+        "filterType": "uriFilter",
+        "predicate": "(^wlink:has_reference)/wlink:dataset",
+        "sortBy": "instanceCount",
+        "sortByPredicate": "(^wlink:has_reference)/wlink:dataset/rdfs:label",
+        "sortDirection": "desc"
       },
       "reference": {
           "containerClass": "ten",

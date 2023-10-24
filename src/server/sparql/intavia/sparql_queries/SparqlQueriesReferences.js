@@ -89,7 +89,13 @@ export const referenceProperties = `
       ?id wlink:number_of_references ?number_of_references .
     }
     UNION 
-    {			?referencer__id  wlink:has_reference/wlink:references ?id ;
+    {			?referencer__id wlink:has_reference/wlink:references ?id ;
+              rdfs:label ?referencer__prefLabel .
+          BIND(CONCAT("/actors/page/", REPLACE(STR(?referencer__id), "^.*\\\\/(.+)", "$1")) AS ?referencer__dataProviderUrl) 
+    }
+    UNION 
+    {			?referencer__id wlink:occupation ?id ; 
+              wlink:dataset [] ;
               rdfs:label ?referencer__prefLabel .
           BIND(CONCAT("/actors/page/", REPLACE(STR(?referencer__id), "^.*\\\\/(.+)", "$1")) AS ?referencer__dataProviderUrl) 
     }
@@ -196,40 +202,6 @@ export const actorsRelatedTo = `
     ?related__id wlink:has_reference/wlink:references ?id ; rdfs:label ?related__prefLabel .
     BIND(CONCAT("/actors/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
   
-`
-
-export const placeMigrationsQuery = `
-SELECT DISTINCT 
-?from__id ?from__prefLabel ?from__lat ?from__long
-(CONCAT("/references/page/", REPLACE(STR(?from__id), "^.*\\\\/(.+)", "$1")) AS ?from__dataProviderUrl)
-?to__id ?to__prefLabel ?to__lat ?to__long 
-(CONCAT("/references/page/", REPLACE(STR(?to__id), "^.*\\\\/(.+)", "$1")) AS ?to__dataProviderUrl)
-(IRI(CONCAT(STR(?from__id), "-", REPLACE(STR(?to__id), "http://www.wikidata.org/entity/", ""))) as ?id)
-(COUNT(DISTINCT ?person) as ?instanceCount)
-
-WHERE {
-  
-    <FILTER>
-
-    ?from__id wlink:coordinate [ 
-    			wlink:lat ?from__lat ; 
-       			wlink:long ?from__long ] ;
-              ^(wlink:has_reference/wlink:references) ?person ;
-              rdfs:label ?from__prefLabel .                         
-    
-    ?person a wlink:Person ;
-      wlink:has_reference/wlink:references ?to__id .
-    
-  	FILTER(STR(?from__id) < STR(?to__id))
-    FILTER NOT EXISTS { ?from__id ?_x ?to__id }
-    FILTER NOT EXISTS { ?to__id ?__x ?from__id }
-  	?to__id wlink:coordinate [ wlink:lat ?to__lat ; wlink:long ?to__long ] ;
-              rdfs:label ?to__prefLabel .
-    	
-  } GROUP BY 
-    ?from__id ?from__prefLabel ?from__lat ?from__long 
-    ?to__id ?to__prefLabel ?to__lat ?to__long 
-  ORDER BY desc(?instanceCount) LIMIT 1000
 `
 
 // on reference instance page

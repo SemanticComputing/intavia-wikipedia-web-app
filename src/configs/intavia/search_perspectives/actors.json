@@ -386,18 +386,6 @@
             "expandedOnInstancePage": true
         },
         {
-            "id": "link_html",
-            "valueType": "string",
-            "renderAsHTML": true,
-            "HTMLParserTask": "createReactRouterLinks",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": false,
-            "numberedList": false,
-            "onlyOnInstancePage": true,
-            "expandedOnInstancePage": true
-        },
-        {
             "id": "reference",
             "valueType": "object",
             "makeLink": true,
@@ -424,6 +412,17 @@
             "sortValues": false,
             "numberedList": false,
             "minWidth": 120
+        },
+        {
+            "id": "occupation",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "minWidth": 120,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
         },
         {
             "id": "death_date",
@@ -516,7 +515,7 @@
             "sortDirection": "desc"
         },
         "country": {
-            "containerClass": "four",
+            "containerClass": "ten",
             "facetType": "list",
             "facetLabelPredicate": "rdfs:label",
             "filterType": "uriFilter",
@@ -540,7 +539,7 @@
             "sortDirection": "desc"
         },
         "reference": {
-            "containerClass": "six",
+            "containerClass": "ten",
             "facetType": "list",
             "facetLabelPredicate": "rdfs:label",
             "filterType": "uriFilter",
