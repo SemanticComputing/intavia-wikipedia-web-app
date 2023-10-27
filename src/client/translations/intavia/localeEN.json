@@ -204,7 +204,7 @@
         },
         "prefLabel": {
           "label": "Label",
-          "description": "A short label describing the manuscript."
+          "description": "Label of this entity"
         },
         "dataset": {
           "label": "Dataset",
@@ -228,51 +228,51 @@
         },
         "type": {
           "label": "Type",
-          "description": "Type of the entity. This hierarchy is extracted from Wikidata."
+          "description": "Type of the entity. The hierarchy is extracted from Wikidata."
         },
         "number_of_references": {
           "label": "Number of References",
-          "description": "Number of actors refering to this item."
+          "description": "Number of people refering to this item"
         },
         "referencer": {
           "label": "Referenced by",
-          "description": "The author(s) who have references to this page."
+          "description": "List of people who have references to this page"
         },
         "related": {
           "label": "Related terms",
-          "description": "Terms that are regularly mentioned in the same sentence."
+          "description": "Terms that are mentioned in the same sentence"
         },
         "country": {
           "label": "Country",
-          "description": "Country."
+          "description": "Country"
         },
         "location": {
           "label": "Location",
-          "description": "Location."
+          "description": "Geographical location of this entity"
         },
         "coordinate": {
           "label": "Coordinate",
-          "description": "Geocoordinate location."
+          "description": "Geocoordinate location"
         },
         "image": {
           "label": "Image",
-          "description": "Image"
+          "description": "Possible image"
         },
         "birth_date": {
           "label": "Birth time",
-          "description": "The date when the actor was born."
+          "description": "Possible time of birth"
         },
         "birth_place": {
           "label": "Birth place",
-          "description": "The place where the actor was born."
+          "description": "Possible place of birth"
         },
         "death_date": {
           "label": "Death time",
-          "description": "The date when the actor died."
+          "description": "Possible time of death"
         },
         "death_place": {
           "label": "Death place",
-          "description": "The place where the actor died."
+          "description": "Possible place of death"
         },
         "source": {
           "label": "Source",
@@ -304,11 +304,11 @@
         },
         "prefLabel": {
           "label": "Sentence",
-          "description": "A short label describing the manuscript."
+          "description": "Sentence extracted from Wikipedia description"
         },
         "reference": {
           "label": "Reference",
-          "description": "The datasets in InTaVia projects"
+          "description": "The referenced entity"
         },
         "html": {
           "label": "HTML representation",
@@ -316,19 +316,19 @@
         },
         "person": {
           "label": "Person",
-          "description": "Type of the entity"
+          "description": "Related person"
         },
         "dataset": {
           "label": "Dataset",
-          "description": "The datasets in InTaVia projects"
+          "description": "The datasets in InTaVia project"
         },
         "source": {
           "label": "Source",
-          "description": "The source Wikipedia website."
+          "description": "The source Wikipedia website"
         },
         "section": {
           "label": "Section",
-          "description": "Section in the Wikipedia page"
+          "description": "Label of the section in Wikipedia description"
         }
       }
     },
@@ -348,19 +348,19 @@
         },
         "prefLabel": {
           "label": "Name",
-          "description": "The standardized name of the actor."
+          "description": "The standardized name of the actor"
         },
         "image": {
           "label": "Image",
-          "description": "Possible image of the actor."
+          "description": "Possible image of the actor"
         },
         "dataset": {
           "label": "Dataset",
-          "description": "The datasets in InTaVia projects"
+          "description": "The datasets in InTaVia project"
         },
         "dataset2": {
           "label": "Dataset 2",
-          "description": "The second dataset where the same actors are present"
+          "description": "Possible second dataset where the same actors are present"
         },
         "gender": {
           "label": "Gender",
@@ -380,23 +380,23 @@
         },
         "reference": {
           "label": "Referenced Item",
-          "description": "Reference"
+          "description": "Items to which this person is referencing. Referenced people in other InTaVia source datasets are recognized by having the dataset label at the end of the name in parenthesis."
         },
         "birth_date": {
           "label": "Birth time",
-          "description": "The date when the actor was born."
+          "description": "The date when the actor was born"
         },
         "birth_place": {
           "label": "Birth place",
-          "description": "The place where the actor was born."
+          "description": "The place where the actor was born"
         },
         "death_date": {
           "label": "Death time",
-          "description": "The date when the actor died."
+          "description": "The date when the actor died"
         },
         "death_place": {
           "label": "Death place",
-          "description": "The place where the actor died."
+          "description": "The place where the actor died"
         },
         "place": {
           "label": "Activity location",
@@ -404,15 +404,15 @@
         },
         "related": {
           "label": "Related actors",
-          "description": "Actors with references to same entities"
+          "description": "Actors with references to same entities. After the person name there is a list of the connecting entities."
         },
         "source": {
           "label": "Source",
-          "description": "The source dataset(s) (Bibale, Bodleian, or SDBM) contributing the information on the actor. If two or more source datasets include the same actor and this has been manually verified, the information from the source datasets has been merged into one MMM actor. Click on the result table link(s) to view the original record on the source’s website."
+          "description": "The source dataset(s) (APIS, BiographyNet, BS, SBI) contributing the information on the actor"
         },
         "external": {
           "label": "External link",
-          "description": "Link to the Resource in an External Database"
+          "description": "Links to the Resource in External Databases"
         }
       }
     },

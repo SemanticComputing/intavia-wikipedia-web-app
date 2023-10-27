@@ -1,7 +1,7 @@
 {
     "id": "actors",
     "endpoint": {
-        "url": "http://localhost:3030/intavia/query",
+        "url": "http://ldf.fi/intapedia/sparql",
         "useAuth": false,
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
